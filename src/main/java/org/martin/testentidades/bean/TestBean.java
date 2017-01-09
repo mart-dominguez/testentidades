@@ -52,7 +52,7 @@ public class TestBean {
         entidad1=eq1;
         ClaveR cr = new ClaveR();
         cr.setC(3);
-        cr.setEntidadQ(entidad1);
+        cr.setClaveq(cq);
         EntidadR er1 =em.find(EntidadR.class, cr);
         System.out.println(er1);
         entidad2=er1;

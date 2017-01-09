@@ -8,6 +8,10 @@ package org.martin.testentidades;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 /**
@@ -19,6 +23,15 @@ import javax.persistence.Table;
 public class EntidadR {
     @EmbeddedId
     private ClaveR clave;
+    
+    @MapsId("claveq")
+    @ManyToOne
+    @JoinColumns({
+        @JoinColumn(name = "D", referencedColumnName = "A"),
+        @JoinColumn(name = "E", referencedColumnName = "B"),
+    })
+    private EntidadQ entidadQ;
+    
     @Column(name = "DATA2")
     private Integer data;
 

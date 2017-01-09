@@ -6,8 +6,11 @@
 package org.martin.testentidades;
 
 import java.io.Serializable;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
@@ -19,16 +22,26 @@ import javax.persistence.ManyToOne;
 @Embeddable
 public class ClaveR  implements Serializable{
     
-    @Column(name = "A")
+    @Column(name = "C")
     private Integer C;
     
-    @ManyToOne
-    @JoinColumns({
-        @JoinColumn(name="D", referencedColumnName = "C", insertable = false, updatable = false ),
-        @JoinColumn(name="E", referencedColumnName = "E", insertable = false, updatable = false)
+    @Embedded
+   @AttributeOverrides({
+        @AttributeOverride(name="pk1",
+                           column=@Column(name="D")),
+        @AttributeOverride(name="pk2",
+                           column=@Column(name="E"))
     })
-    private EntidadQ entidadQ;
+    private ClaveQ claveq;
 
+    public ClaveQ getClaveq() {
+        return claveq;
+    }
+
+    public void setClaveq(ClaveQ claveq) {
+        this.claveq = claveq;
+    }
+    
     public Integer getC() {
         return C;
     }
@@ -37,12 +50,5 @@ public class ClaveR  implements Serializable{
         this.C = C;
     }
 
-    public EntidadQ getEntidadQ() {
-        return entidadQ;
-    }
-
-    public void setEntidadQ(EntidadQ entidadQ) {
-        this.entidadQ = entidadQ;
-    }
-    
+        
 }
